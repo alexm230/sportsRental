@@ -66,6 +66,8 @@ public class EmployeeInfo extends javax.swing.JFrame {
         textAddress.setRows(5);
         txtAddress.setViewportView(textAddress);
 
+        btnAddEmployee.setBackground(new java.awt.Color(0, 102, 102));
+        btnAddEmployee.setForeground(new java.awt.Color(255, 255, 255));
         btnAddEmployee.setText("Add Employee");
         btnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +77,8 @@ public class EmployeeInfo extends javax.swing.JFrame {
 
         lblError.setForeground(new java.awt.Color(255, 51, 51));
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +86,8 @@ public class EmployeeInfo extends javax.swing.JFrame {
             }
         });
 
+        btnViewEmployees.setBackground(new java.awt.Color(153, 153, 0));
+        btnViewEmployees.setForeground(new java.awt.Color(255, 255, 255));
         btnViewEmployees.setText("View Employees");
         btnViewEmployees.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,19 +185,19 @@ public class EmployeeInfo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtfNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfNameActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_txtfNameActionPerformed
 
     private void btnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddEmployeeActionPerformed
+           //Get values from text fields
            String firstName = txtfName.getText();
            String lastName = txtlName.getText();
            String address = textAddress.getText();
            String nUsername = txtNewUserName.getText();
-            //Reading password as char array
+           //Reading password as char array
            char[] nPasswordChars = txtPassword.getPassword();
            
-              //Convert the char array to a String
-             String nPassword = new String(nPasswordChars);
+            //Convert the char array to a String
+           String nPassword = new String(nPasswordChars);
            
            //Check if fields are empty
            if(firstName.isEmpty() || lastName.isEmpty() || address.isEmpty() || nPassword.isEmpty()) {
@@ -216,7 +222,7 @@ public class EmployeeInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddEmployeeActionPerformed
 
     private void txtlNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlNameActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtlNameActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

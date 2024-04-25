@@ -32,6 +32,7 @@ public class WelcomePage extends javax.swing.JFrame {
         btnCustomerInfo = new javax.swing.JButton();
         btnViewRentals = new javax.swing.JButton();
         btnViewPurchases = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,6 +40,8 @@ public class WelcomePage extends javax.swing.JFrame {
         lblWelcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblWelcomeLabel.setText("Sports Rental Management System");
 
+        btnEmployeeInfo.setBackground(new java.awt.Color(0, 102, 204));
+        btnEmployeeInfo.setForeground(new java.awt.Color(255, 255, 255));
         btnEmployeeInfo.setText("Employee");
         btnEmployeeInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -46,6 +49,8 @@ public class WelcomePage extends javax.swing.JFrame {
             }
         });
 
+        btnAddStock.setBackground(new java.awt.Color(153, 0, 51));
+        btnAddStock.setForeground(new java.awt.Color(255, 255, 255));
         btnAddStock.setText("Stock");
         btnAddStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +58,8 @@ public class WelcomePage extends javax.swing.JFrame {
             }
         });
 
+        btnCustomerInfo.setBackground(new java.awt.Color(51, 153, 0));
+        btnCustomerInfo.setForeground(new java.awt.Color(255, 255, 255));
         btnCustomerInfo.setText("Customer");
         btnCustomerInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +67,8 @@ public class WelcomePage extends javax.swing.JFrame {
             }
         });
 
+        btnViewRentals.setBackground(new java.awt.Color(153, 153, 0));
+        btnViewRentals.setForeground(new java.awt.Color(255, 255, 255));
         btnViewRentals.setText("View Rentals");
         btnViewRentals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,10 +76,22 @@ public class WelcomePage extends javax.swing.JFrame {
             }
         });
 
+        btnViewPurchases.setBackground(new java.awt.Color(102, 0, 102));
+        btnViewPurchases.setForeground(new java.awt.Color(255, 255, 255));
         btnViewPurchases.setText("View Purchases");
         btnViewPurchases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnViewPurchasesActionPerformed(evt);
+            }
+        });
+
+        btnLogout.setBackground(new java.awt.Color(102, 102, 102));
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Log out");
+        btnLogout.setBorderPainted(false);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -91,17 +112,25 @@ public class WelcomePage extends javax.swing.JFrame {
                         .addGap(154, 154, 154)
                         .addComponent(btnViewPurchases)
                         .addGap(66, 66, 66)
-                        .addComponent(btnViewRentals, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(114, 114, 114)
-                        .addComponent(lblWelcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                        .addComponent(btnViewRentals, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(lblWelcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(lblWelcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(lblWelcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -109,9 +138,9 @@ public class WelcomePage extends javax.swing.JFrame {
                     .addComponent(btnCustomerInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnViewPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnViewRentals, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(btnViewPurchases, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnViewRentals, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,6 +175,12 @@ public class WelcomePage extends javax.swing.JFrame {
             viewPurchases vPurchases = new viewPurchases();
             vPurchases.setVisible(true);
     }//GEN-LAST:event_btnViewPurchasesActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+            this.dispose();
+            login lgin = new login();
+            lgin.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +221,7 @@ public class WelcomePage extends javax.swing.JFrame {
     private javax.swing.JButton btnAddStock;
     private javax.swing.JButton btnCustomerInfo;
     private javax.swing.JButton btnEmployeeInfo;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnViewPurchases;
     private javax.swing.JButton btnViewRentals;
     private javax.swing.JLabel lblWelcomeLabel;

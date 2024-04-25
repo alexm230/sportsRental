@@ -2,6 +2,7 @@ package sportsrental;
 /*
 @author Alex & Anna
 */
+//Declaring all libraries
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +25,7 @@ public class sportsRentalDB {
     private final String dbURL = "jdbc:ucanaccess://" + msAccDB;
 
     public sportsRentalDB() {
-        // Step 1: Loading or registering JDBC driver class
+        //Step 1: Loading or registering JDBC driver class
         try {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
         } catch (ClassNotFoundException cnfex) {
@@ -38,24 +39,24 @@ public void addEmployee(String fName, String lName, String address, String usern
     PreparedStatement preparedStatement = null;
 
     try {
-        // Step 2: Opening database connection
+        //Step 2: Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating and preparing SQL statement with parameters
+        //Step 3: Creating and preparing SQL statement with parameters
         String sql = "INSERT INTO Employee (fName, lName, Address, username, password) VALUES (?, ?, ?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql);
 
-        // Step 4: Setting values for parameters
+        //Step 4: Setting values for parameters
         preparedStatement.setString(1, fName);
         preparedStatement.setString(2, lName);
         preparedStatement.setString(3, address);
         preparedStatement.setString(4, username);
         preparedStatement.setString(5, nPassword);
 
-        // Step 5: Executing the prepared statement
+        //Step 5: Executing the prepared statement
         int rowsAffected = preparedStatement.executeUpdate();
 
-        // Step 6: Checking if insertion was successful
+        //Step 6: Checking if insertion was successful
         if (rowsAffected > 0) {
             System.out.println("Employee added successfully.");
         } else {
@@ -64,7 +65,7 @@ public void addEmployee(String fName, String lName, String address, String usern
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 7: Closing database connection and prepared statement
+        //Step 7: Closing database connection and prepared statement
         try {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -83,17 +84,17 @@ public void addEmployee(String fName, String lName, String address, String usern
         Statement statement = null;
 
         try {
-            // Step 2: Opening database connection
+            //Step 2: Opening database connection
             connection = DriverManager.getConnection(dbURL);
 
-            // Step 3: Creating JDBC Statement
+            //Step 3: Creating JDBC Statement
             statement = connection.createStatement();
 
-            // Step 4: Creating and executing SQL statement to add equipment
+            //Step 4: Creating and executing SQL statement to add equipment
             String sql = "INSERT INTO Stock (equipmentName, equipmentAge, equipmentQuality, equipmentPrice, rentPricePerDay) VALUES ('" + equipmentName + "', " + equipmentAge + ", '" + equipmentQuality + "', " + equipmentPrice + ", " + rentPricePerDay + ")";
             int rowsAffected = statement.executeUpdate(sql);
 
-            // Step 5: Checking if insertion was successful
+            //Step 5: Checking if insertion was successful
             if (rowsAffected > 0) {
                 System.out.println("Equipment added successfully.");
             } else {
@@ -102,7 +103,7 @@ public void addEmployee(String fName, String lName, String address, String usern
         } catch (SQLException sqlex) {
             System.err.println(sqlex.getMessage());
         } finally {
-            // Step 6: Closing database connection
+            //Step 6: Closing database connection
             try {
                 if (statement != null) {
                     statement.close();
@@ -115,7 +116,8 @@ public void addEmployee(String fName, String lName, String address, String usern
             }
         }
     }
-   
+
+//Get all stock data, store and is hashmap
 public Map<Integer, Map<String, Object>> getAllStock() {
         Map<Integer, Map<String, Object>> stockDictionary = new HashMap<>();
         Connection connection = null;
@@ -123,17 +125,17 @@ public Map<Integer, Map<String, Object>> getAllStock() {
         ResultSet resultSet = null;
 
         try {
-            // Step 2: Opening database connection
+            //Step 2: Opening database connection
             connection = DriverManager.getConnection(dbURL);
 
-            // Step 3: Creating JDBC Statement
+            //Step 3: Creating JDBC Statement
             statement = connection.createStatement();
 
-            // Step 4: Executing SQL statement to select all records from Stock table
+            //Step 4: Executing SQL statement to select all records from Stock table
             String sql = "SELECT * FROM Stock";
             resultSet = statement.executeQuery(sql);
 
-            // Step 5: Iterating through the result set and storing data in the dictionary
+            //Step 5: Iterating through the result set and storing data in the dictionary
             while (resultSet.next()) {
                 int stockID = resultSet.getInt("stockID");
                 String equipmentName = resultSet.getString("equipmentName");
@@ -141,20 +143,22 @@ public Map<Integer, Map<String, Object>> getAllStock() {
                 String equipmentQuality = resultSet.getString("equipmentQuality");
                 double equipmentPrice = resultSet.getDouble("equipmentPrice");
                 double rentPricePerDay = resultSet.getDouble("rentPricePerDay"); // Retrieve rentPricePerDay
-
+                
+                //Create a map to store stock details
                 Map<String, Object> stockInfo = new HashMap<>();
                 stockInfo.put("equipmentName", equipmentName);
                 stockInfo.put("equipmentAge", equipmentAge);
                 stockInfo.put("equipmentQuality", equipmentQuality);
                 stockInfo.put("equipmentPrice", equipmentPrice);
                 stockInfo.put("rentPricePerDay", rentPricePerDay); // Add rentPricePerDay to the stockInfo
-
+                
+                //Add stock information to the dictionary with stockID as the key
                 stockDictionary.put(stockID, stockInfo);
             }
         } catch (SQLException sqlex) {
             System.err.println(sqlex.getMessage());
         } finally {
-            // Step 6: Closing database connection
+            //Step 6: Closing database connection
             try {
                 if (resultSet != null) {
                     resultSet.close();
@@ -172,22 +176,22 @@ public Map<Integer, Map<String, Object>> getAllStock() {
         return stockDictionary;
     }
 
-    public void removeEquipment(int stockID) {
+public void removeEquipment(int stockID) {
     Connection connection = null;
     Statement statement = null;
 
     try {
-        // Step 2: Opening database connection
+        //Step 2: Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating JDBC Statement
+        //Step 3: Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 4: Creating and executing SQL statement to remove equipment
+        //Step 4: Creating and executing SQL statement to remove equipment
         String sql = "DELETE FROM Stock WHERE stockID = " + stockID;
         int rowsAffected = statement.executeUpdate(sql);
 
-        // Step 5: Checking if deletion was successful
+        //Step 5: Checking if deletion was successful
         if (rowsAffected > 0) {
             System.out.println("Equipment removed successfully.");
         } else {
@@ -196,7 +200,7 @@ public Map<Integer, Map<String, Object>> getAllStock() {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 6: Closing database connection
+        //Step 6: Closing database connection
         try {
             if (statement != null) {
                 statement.close();
@@ -209,7 +213,8 @@ public Map<Integer, Map<String, Object>> getAllStock() {
         }
     }
 }
-    
+
+//Get all employees and store in dictionary
 public Map<Integer, Map<String, Object>> getAllEmployees() {
     Map<Integer, Map<String, Object>> employeeDictionary = new HashMap<>();
     Connection connection = null;
@@ -217,17 +222,14 @@ public Map<Integer, Map<String, Object>> getAllEmployees() {
     ResultSet resultSet = null;
 
     try {
-        // Step 2: Opening database connection
         connection = DriverManager.getConnection(dbURL);
-
-        // Step 3: Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 4: Executing SQL statement to select all records from Employee table
+        //Executing SQL statement to select all records from Employee table
         String sql = "SELECT * FROM Employee";
         resultSet = statement.executeQuery(sql);
 
-        // Step 5: Iterating through the result set and storing data in the dictionary
+        //Iterating through the result set and storing data in the dictionary
         while (resultSet.next()) {
             int employeeID = resultSet.getInt("employeeID");
             String fName = resultSet.getString("fName");
@@ -244,7 +246,7 @@ public Map<Integer, Map<String, Object>> getAllEmployees() {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 6: Closing database connection
+        //Closing database connection
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -266,17 +268,17 @@ public void removeEmployee(int employeeID) {
     Statement statement = null;
 
     try {
-        // Step 2: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating JDBC Statement
+        //Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 4: Creating and executing SQL statement to remove employee
+        //Creating and executing SQL statement to remove employee
         String sql = "DELETE FROM Employee WHERE employeeID = " + employeeID;
         int rowsAffected = statement.executeUpdate(sql);
 
-        // Step 5: Checking if deletion was successful
+        //Checking if deletion was successful
         if (rowsAffected > 0) {
             System.out.println("Employee removed successfully.");
         } else {
@@ -285,7 +287,7 @@ public void removeEmployee(int employeeID) {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 6: Closing database connection
+        //Closing database connection
         try {
             if (statement != null) {
                 statement.close();
@@ -303,17 +305,17 @@ public void addCustomer(String fName, String lName, int age, String sex, String 
     Statement statement = null;
 
     try {
-        // Step 2: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating JDBC Statement
+        //Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 4: Creating and executing SQL statement to add customer
+        //Creating and executing SQL statement to add customer
         String sql = "INSERT INTO Customer (fName, lName, Age, Sex, Address) VALUES ('" + fName + "', '" + lName + "', " + age + ", '" + sex + "', '" + address + "')";
         int rowsAffected = statement.executeUpdate(sql);
 
-        // Step 5: Checking if insertion was successful
+        //Checking if insertion was successful
         if (rowsAffected > 0) {
             System.out.println("Customer added successfully.");
         } else {
@@ -322,7 +324,7 @@ public void addCustomer(String fName, String lName, int age, String sex, String 
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 6: Closing database connection
+        //Closing database connection
         try {
             if (statement != null) {
                 statement.close();
@@ -342,17 +344,17 @@ public Map<Integer, Map<String, Object>> getAllCustomers() {
     ResultSet resultSet = null;
 
     try {
-        // Step 2: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating JDBC Statement
+        //Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 4: Executing SQL statement to select all records from Customer table
+        //Executing SQL statement to select all records from Customer table
         String sql = "SELECT * FROM Customer";
         resultSet = statement.executeQuery(sql);
 
-        // Step 5: Iterating through the result set and storing data in the dictionary
+        //Iterating through the result set and storing data in the dictionary
         while (resultSet.next()) {
             int customerID = resultSet.getInt("CustomerID");
             String fName = resultSet.getString("fName");
@@ -373,7 +375,7 @@ public Map<Integer, Map<String, Object>> getAllCustomers() {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 6: Closing database connection
+        //Closing database connection
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -395,17 +397,17 @@ public void removeCustomer(int customerID) {
     Statement statement = null;
 
     try {
-        // Step 2: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating JDBC Statement
+        //Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 4: Creating and executing SQL statement to remove customer
+        //Creating and executing SQL statement to remove customer
         String sql = "DELETE FROM Customer WHERE CustomerID = " + customerID;
         int rowsAffected = statement.executeUpdate(sql);
 
-        // Step 5: Checking if deletion was successful
+        //Checking if deletion was successful
         if (rowsAffected > 0) {
             System.out.println("Customer removed successfully.");
         } else {
@@ -414,7 +416,7 @@ public void removeCustomer(int customerID) {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 6: Closing database connection
+        //Closing database connection
         try {
             if (statement != null) {
                 statement.close();
@@ -441,18 +443,18 @@ public List<Map<String, String>> checkAvailability(int stockID) {
         preparedStatement.setInt(1, stockID);
         resultSet = preparedStatement.executeQuery();
 
-        // Define a formatter that matches the datetime format from your SQL results
+        //Define a formatter that matches the datetime format from database
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSS");
 
         while (resultSet.next()) {
             String rentalDateString = resultSet.getString("RentalDate");
             String returnDateString = resultSet.getString("ReturnDate");
 
-            // Parse the datetime strings using the new formatter
+            //Convert the datetime strings using the new formatter
             LocalDateTime rentalDateTime = LocalDateTime.parse(rentalDateString, formatter);
             LocalDateTime returnDateTime = LocalDateTime.parse(returnDateString, formatter);
 
-            // Format to "dd/MM/yyyy" if needed
+            //Format to "dd/MM/yyyy"
             DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String formattedRentalDate = rentalDateTime.toLocalDate().format(outputFormatter);
             String formattedReturnDate = returnDateTime.toLocalDate().format(outputFormatter);
@@ -460,7 +462,8 @@ public List<Map<String, String>> checkAvailability(int stockID) {
             Map<String, String> availabilityInfo = new HashMap<>();
             availabilityInfo.put("Rental Date", formattedRentalDate);
             availabilityInfo.put("Return Date", formattedReturnDate);
-
+            
+            //Add to map list
             availabilityInfoList.add(availabilityInfo);
         }
     } catch (SQLException sqlex) {
@@ -484,11 +487,14 @@ public double getRentPricePerDay(int stockID) {
 
     try {
         connection = DriverManager.getConnection(dbURL);
+        //Prepare SQL query to retrieve rentPricePerDay for the given stockID
         String sql = "SELECT rentPricePerDay FROM Stock WHERE stockID = ?";
         preparedStatement = connection.prepareStatement(sql);
+        //Set the stockID parameter in the prepared statement
         preparedStatement.setInt(1, stockID);
         resultSet = preparedStatement.executeQuery();
-
+        
+        //If a result is found, retrieve rentPricePerDay
         if (resultSet.next()) {
             rentPricePerDay = resultSet.getDouble("rentPricePerDay");
         }
@@ -496,6 +502,7 @@ public double getRentPricePerDay(int stockID) {
         System.err.println(sqlex.getMessage());
     } finally {
         try {
+            //Close result set, prepared statement, and connection
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
             if (connection != null) connection.close();
@@ -505,15 +512,16 @@ public double getRentPricePerDay(int stockID) {
     }
     return rentPricePerDay;
 }
+//Add rental information
 public void addRental(int customerID, int stockID, LocalDate rentalDate, LocalDate returnDate, double rentalPrice) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     try {
-        // Step 1: Open database connection
+        //Open database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 2: Create and execute SQL statement to add rental
+        //Create and execute SQL statement to add rental
         String sql = "INSERT INTO Rentals (customerID, stockID, RentalDate, ReturnDate, RentalPrice, Status) VALUES (?, ?, ?, ?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, customerID);
@@ -525,7 +533,7 @@ public void addRental(int customerID, int stockID, LocalDate rentalDate, LocalDa
 
         int rowsAffected = preparedStatement.executeUpdate();
 
-        // Step 3: Check if insertion was successful
+        //Check if insertion was successful
         if (rowsAffected > 0) {
             System.out.println("Rental added successfully.");
         } else {
@@ -534,7 +542,7 @@ public void addRental(int customerID, int stockID, LocalDate rentalDate, LocalDa
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 4: Close resources
+        //Close resources
         try {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -563,7 +571,7 @@ public String getCustomerFirstName(int customerID) {
         if (resultSet.next()) {
             firstName = resultSet.getString("fName");
         } else {
-            // If no records found for the given customerID, return null
+            //If no records found for the given customerID, return null
             firstName = null;
         }
     } catch (SQLException sqlex) {
@@ -579,6 +587,7 @@ public String getCustomerFirstName(int customerID) {
     }
     return firstName;
 }
+//Check if stock exists
 public boolean checkStockExists(int stockID) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
@@ -586,23 +595,23 @@ public boolean checkStockExists(int stockID) {
     boolean exists = false;
 
     try {
-        // Open database connection
+        //Open database connection
         connection = DriverManager.getConnection(dbURL);
         
-        // Prepare SQL statement
+        //Prepare SQL statement
         String sql = "SELECT * FROM Stock WHERE stockID = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, stockID);
         
-        // Execute query
+        //Execute query
         resultSet = preparedStatement.executeQuery();
         
-        // Check if result set has any rows
+        //Check if result set has any rows
         exists = resultSet.next();
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Close resources
+        //Close resources
         try {
             if (resultSet != null) resultSet.close();
             if (preparedStatement != null) preparedStatement.close();
@@ -613,6 +622,7 @@ public boolean checkStockExists(int stockID) {
     }
     return exists;
 }
+//Get Equipment price using stock ID
 public double getEquipmentPrice(int stockID) {
     double equipmentPrice = 0.0;
     Connection connection = null;
@@ -640,19 +650,22 @@ public double getEquipmentPrice(int stockID) {
             System.err.println(sqlex.getMessage());
         }
     }
+    //Return Price
     return equipmentPrice;
 }
-public void addPurchase(int customerID, int stockID, double totalPrice) {
+
+public int addPurchase(int customerID, int stockID, double totalPrice) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
+    int purchaseID = -1; //Initialize insertedID with a default value
 
     try {
-        // Step 2: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating and executing SQL statement to add purchase
+        //Creating and executing SQL statement to add purchase
         String sql = "INSERT INTO Purchases (customerID, stockID, PurchaseDate, TotalPrice) VALUES (?, ?, ?, ?)";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setInt(1, customerID);
         preparedStatement.setInt(2, stockID);
         preparedStatement.setDate(3, Date.valueOf(LocalDate.now())); // Use today's date for purchase date
@@ -660,16 +673,20 @@ public void addPurchase(int customerID, int stockID, double totalPrice) {
 
         int rowsAffected = preparedStatement.executeUpdate();
 
-        // Step 4: Checking if insertion was successful
+        //Checking if insertion was successful and retrieving the generated keys
         if (rowsAffected > 0) {
-            System.out.println("Purchase added successfully.");
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                purchaseID = generatedKeys.getInt(1); //Retrieve the generated ID
+            }
+            System.out.println("Purchase added successfully. ID: " + purchaseID);
         } else {
             System.out.println("Failed to add purchase.");
         }
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 5: Closing database connection
+        //Closing database connection
         try {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -681,23 +698,26 @@ public void addPurchase(int customerID, int stockID, double totalPrice) {
             System.err.println(sqlex.getMessage());
         }
     }
+    //Return the Purchase ID
+    return purchaseID; 
 }
+
 public void removePurchaseItem(int purchaseID) {
     Connection connection = null;
     PreparedStatement preparedStatement = null;
 
     try {
-        // Step 2: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating and executing SQL statement to remove stock item
+        //Creating and executing SQL statement to remove stock item
         String sql = "DELETE FROM Purchases WHERE purchaseID = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, purchaseID);
 
         int rowsAffected = preparedStatement.executeUpdate();
 
-        // Step 4: Checking if deletion was successful
+        //Checking if deletion was successful
         if (rowsAffected > 0) {
             System.out.println("purchaseID item removed successfully.");
         } else {
@@ -706,7 +726,7 @@ public void removePurchaseItem(int purchaseID) {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 5: Closing database connection
+        //Closing database connection
         try {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -724,25 +744,25 @@ public void updateReturnDate(int rentalID) {
     PreparedStatement preparedStatement = null;
 
     try {
-        // Step 1: Open database connection
+        //Open database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 2: Create and execute SQL statement to update ReturnDate
+        //Create and execute SQL statement to update ReturnDate
         String sql = "UPDATE Rentals SET ReturnDate = ? WHERE rentalID = ?";
         preparedStatement = connection.prepareStatement(sql);
         
-        // Get today's date
+        //Get today's date
         LocalDate today = LocalDate.now();
         Date currentDate = Date.valueOf(today);
         
-        // Set the parameters
+        //Set the parameters
         preparedStatement.setDate(1, currentDate);
         preparedStatement.setInt(2, rentalID);
         
-        // Execute the update
+        //Execute the update
         int rowsAffected = preparedStatement.executeUpdate();
 
-        // Step 3: Check if the update was successful
+        //Check if the update was successful
         if (rowsAffected > 0) {
             System.out.println("ReturnDate updated successfully for rentalID: " + rentalID);
         } else {
@@ -751,7 +771,7 @@ public void updateReturnDate(int rentalID) {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 4: Close resources
+        //Close resources
         try {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -769,26 +789,26 @@ public void updateReturnDateAndStatus(int rentalID) {
     PreparedStatement preparedStatement = null;
 
     try {
-        // Step 1: Open database connection
+        //Open database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 2: Create and execute SQL statement to update ReturnDate and Status
+        //Create and execute SQL statement to update ReturnDate and Status
         String sql = "UPDATE Rentals SET ReturnDate = ?, Status = ? WHERE rentalID = ?";
         preparedStatement = connection.prepareStatement(sql);
         
-        // Get today's date
+        //Get today's date
         LocalDate today = LocalDate.now();
         Date currentDate = Date.valueOf(today);
         
-        // Set the parameters
+        //Set the parameters
         preparedStatement.setDate(1, currentDate);
         preparedStatement.setString(2, "Returned");
         preparedStatement.setInt(3, rentalID);
         
-        // Execute the update
+        //Execute the update
         int rowsAffected = preparedStatement.executeUpdate();
 
-        // Step 3: Check if the update was successful
+        //Check if the update was successful
         if (rowsAffected > 0) {
             System.out.println("ReturnDate and Status updated successfully for rentalID: " + rentalID);
         } else {
@@ -797,7 +817,7 @@ public void updateReturnDateAndStatus(int rentalID) {
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 4: Close resources
+        //Close resources
         try {
             if (preparedStatement != null) {
                 preparedStatement.close();
@@ -817,17 +837,17 @@ public Map<Integer, Map<String, Object>> getAllPurchases() {
     ResultSet resultSet = null;
 
     try {
-        // Step 1: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 2: Creating JDBC Statement
+        //Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 3: Executing SQL statement to select all records from Purchases table
+        //Executing SQL statement to select all records from Purchases table
         String sql = "SELECT * FROM Purchases";
         resultSet = statement.executeQuery(sql);
 
-        // Step 4: Iterating through the result set and storing data in the dictionary
+        //Iterating through the result set and storing data in the dictionary
         while (resultSet.next()) {
             int purchaseID = resultSet.getInt("purchaseID");
             int customerID = resultSet.getInt("customerID");
@@ -835,20 +855,20 @@ public Map<Integer, Map<String, Object>> getAllPurchases() {
             Date purchaseDate = resultSet.getDate("PurchaseDate");
             double totalPrice = resultSet.getDouble("TotalPrice");
 
-            // Create a map to store the purchase details
+            //Create a map to store the purchase details
             Map<String, Object> purchaseInfo = new HashMap<>();
             purchaseInfo.put("customerID", customerID);
             purchaseInfo.put("stockID", stockID);
             purchaseInfo.put("PurchaseDate", purchaseDate);
             purchaseInfo.put("TotalPrice", totalPrice);
 
-            // Add the purchase details to the dictionary
+            //Add the purchase details to the dictionary
             purchasesDictionary.put(purchaseID, purchaseInfo);
         }
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 5: Closing database connection
+        //Closing database connection
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -872,17 +892,17 @@ public Map<Integer, Map<String, Object>> getAllRentals() {
     ResultSet resultSet = null;
 
     try {
-        // Step 1: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 2: Creating JDBC Statement
+        //Creating JDBC Statement
         statement = connection.createStatement();
 
-        // Step 3: Executing SQL statement to select all records from Rentals table
+        //Executing SQL statement to select all records from Rentals table
         String sql = "SELECT * FROM Rentals";
         resultSet = statement.executeQuery(sql);
 
-        // Step 4: Iterating through the result set and storing data in the dictionary
+        //Iterating through the result set and storing data in the dictionary
         while (resultSet.next()) {
             int rentalID = resultSet.getInt("rentalID");
             int customerID = resultSet.getInt("customerID");
@@ -892,7 +912,7 @@ public Map<Integer, Map<String, Object>> getAllRentals() {
             double rentalPrice = resultSet.getDouble("RentalPrice");
             String status = resultSet.getString("Status");
 
-            // Create a map to store the rental details
+            //Create a map to store the rental details
             Map<String, Object> rentalInfo = new HashMap<>();
             rentalInfo.put("customerID", customerID);
             rentalInfo.put("stockID", stockID);
@@ -901,13 +921,13 @@ public Map<Integer, Map<String, Object>> getAllRentals() {
             rentalInfo.put("RentalPrice", rentalPrice);
             rentalInfo.put("Status", status);
 
-            // Add the rental details to the dictionary
+            //Add the rental details to the dictionary
             rentalsDictionary.put(rentalID, rentalInfo);
         }
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 5: Closing database connection
+        //Closing database connection
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -931,25 +951,25 @@ public String getPasswordByUsername(String username) {
     String password = null;
 
     try {
-        // Step 2: Opening database connection
+        //Opening database connection
         connection = DriverManager.getConnection(dbURL);
 
-        // Step 3: Creating and preparing SQL statement with parameter
+        //Creating and preparing SQL statement with parameter
         String sql = "SELECT password FROM Employee WHERE username = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, username);
 
-        // Step 4: Executing the prepared statement
+        //Executing the prepared statement
         resultSet = preparedStatement.executeQuery();
 
-        // Step 5: Checking if username exists and retrieving password
+        //Checking if username exists and retrieving password
         if (resultSet.next()) {
             password = resultSet.getString("password");
         }
     } catch (SQLException sqlex) {
         System.err.println(sqlex.getMessage());
     } finally {
-        // Step 6: Closing database connection and prepared statement
+        //Closing database connection and prepared statement
         try {
             if (resultSet != null) {
                 resultSet.close();
@@ -964,6 +984,7 @@ public String getPasswordByUsername(String username) {
             System.err.println(sqlex.getMessage());
         }
     }
+    //Return username's password
     return password;
 }
 }

@@ -22,15 +22,16 @@ public class viewRentals extends javax.swing.JFrame {
          //Call method to display rentals
          displayRentals();
     }
-    // Method to display rentals in the table
+    //Method to display rentals in the table
     private void displayRentals() {
         Map<Integer, Map<String, Object>> rentals = db.getAllRentals();
-
+         //Iterate through each rental entry and add it to the table
         for (Map.Entry<Integer, Map<String, Object>> entry : rentals.entrySet()) {
+            //Key
             int rentalID = entry.getKey();
             Map<String, Object> rentalInfo = entry.getValue();
 
-            // Extract rental information
+            //Extract rental information
             int customerID = (int) rentalInfo.get("customerID");
             int stockID = (int) rentalInfo.get("stockID");
             String rentalDate = rentalInfo.get("RentalDate").toString();
@@ -38,7 +39,7 @@ public class viewRentals extends javax.swing.JFrame {
             double rentalPrice = (double) rentalInfo.get("RentalPrice");
             String status = (String) rentalInfo.get("Status");
 
-            // Add row to the table
+            //Add a row to the table with the received rental information
             ((DefaultTableModel) btlViewRentals.getModel()).addRow(new Object[]{rentalID, customerID, stockID, rentalDate, returnDate, rentalPrice, status});
         }
     }
@@ -58,6 +59,8 @@ public class viewRentals extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btlViewRentals.setBackground(new java.awt.Color(153, 153, 153));
+        btlViewRentals.setForeground(new java.awt.Color(255, 255, 255));
         btlViewRentals.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -68,6 +71,8 @@ public class viewRentals extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(btlViewRentals);
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -38,6 +38,8 @@ public class viewCustomers extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tblViewCustomers.setBackground(new java.awt.Color(153, 153, 153));
+        tblViewCustomers.setForeground(new java.awt.Color(0, 0, 0));
         tblViewCustomers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -51,6 +53,8 @@ public class viewCustomers extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblViewCustomers);
 
+        btnRemoveCustomer.setBackground(new java.awt.Color(102, 0, 102));
+        btnRemoveCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveCustomer.setText("Remove Customer");
         btnRemoveCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -58,6 +62,8 @@ public class viewCustomers extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,11 +78,11 @@ public class viewCustomers extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(127, 127, 127)
+                .addGap(128, 128, 128)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(btnRemoveCustomer))
@@ -86,13 +92,13 @@ public class viewCustomers extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRemoveCustomer)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRemoveCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         pack();
@@ -108,14 +114,17 @@ public class viewCustomers extends javax.swing.JFrame {
 
         // Iterate over the customer data and add to the table
         for (Map.Entry<Integer, Map<String, Object>> entry : customers.entrySet()) {
+             //Get customer data from the map entry
             int customerID = entry.getKey();
             Map<String, Object> customerInfo = entry.getValue();
+            //Get individual customer data using keys
             String fName = (String) customerInfo.get("fName");
             String lName = (String) customerInfo.get("lName");
             int age = (int) customerInfo.get("Age");
             String sex = (String) customerInfo.get("Sex");
             String address = (String) customerInfo.get("Address");
-
+            
+            //Add a new row to the table with the customer info received
             model.addRow(new Object[]{customerID, fName, lName, age, sex, address});
         }
     }

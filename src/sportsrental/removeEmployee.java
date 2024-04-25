@@ -34,31 +34,35 @@ public class removeEmployee extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnRemoveEmployee.setBackground(new java.awt.Color(102, 0, 102));
+        btnRemoveEmployee.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveEmployee.setText("Remove Employee");
         btnRemoveEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRemoveEmployeeActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRemoveEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        getContentPane().add(btnRemoveEmployee, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
 
         lblEmployeeID.setText("Employee ID:");
-        getContentPane().add(lblEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        getContentPane().add(lblEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         txtEmployeeID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmployeeIDActionPerformed(evt);
             }
         });
-        getContentPane().add(txtEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 89, 20));
+        getContentPane().add(txtEmployeeID, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 89, 30));
 
-        btnWelcomePage.setText("Welcome Page");
+        btnWelcomePage.setBackground(new java.awt.Color(0, 0, 0));
+        btnWelcomePage.setForeground(new java.awt.Color(255, 255, 255));
+        btnWelcomePage.setText("Back");
         btnWelcomePage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnWelcomePageActionPerformed(evt);
             }
         });
-        getContentPane().add(btnWelcomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        getContentPane().add(btnWelcomePage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, 30));
 
         lblMessage.setForeground(new java.awt.Color(255, 0, 51));
         getContentPane().add(lblMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 180, 20));
@@ -100,8 +104,8 @@ public class removeEmployee extends javax.swing.JFrame {
 
     private void btnWelcomePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWelcomePageActionPerformed
             this.dispose();
-            WelcomePage wpage = new WelcomePage();
-            wpage.setVisible(true);
+            EmployeeInfo em = new EmployeeInfo();
+            em.setVisible(true);
     }//GEN-LAST:event_btnWelcomePageActionPerformed
 
     /**

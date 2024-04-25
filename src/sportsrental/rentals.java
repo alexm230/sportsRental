@@ -95,6 +95,8 @@ public class rentals extends javax.swing.JFrame {
             }
         });
 
+        btnCheckPriceAndAvailability.setBackground(new java.awt.Color(0, 102, 204));
+        btnCheckPriceAndAvailability.setForeground(new java.awt.Color(255, 255, 255));
         btnCheckPriceAndAvailability.setText("Check Price and Availability");
         btnCheckPriceAndAvailability.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,6 +111,8 @@ public class rentals extends javax.swing.JFrame {
 
         lblTotalPrice.setText("Total Price");
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +120,8 @@ public class rentals extends javax.swing.JFrame {
             }
         });
 
+        btnBook.setBackground(new java.awt.Color(0, 153, 0));
+        btnBook.setForeground(new java.awt.Color(255, 255, 255));
         btnBook.setText("Book");
         btnBook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +129,8 @@ public class rentals extends javax.swing.JFrame {
             }
         });
 
+        btnReturn.setBackground(new java.awt.Color(153, 0, 153));
+        btnReturn.setForeground(new java.awt.Color(255, 255, 255));
         btnReturn.setText("Return");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,7 +165,7 @@ public class rentals extends javax.swing.JFrame {
                             .addComponent(btnBack)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnReturn)
-                            .addGap(18, 18, 18)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(btnBook))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addContainerGap()

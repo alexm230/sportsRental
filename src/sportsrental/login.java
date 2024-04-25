@@ -6,7 +6,7 @@ package sportsrental;
 
 /**
  *
- * @author -D3MON-
+ * @author @author Alex & Anna
  */
 public class login extends javax.swing.JFrame {
 
@@ -34,11 +34,11 @@ public class login extends javax.swing.JFrame {
         btnLogin = new javax.swing.JButton();
         btnRent = new javax.swing.JButton();
         btnPurchase = new javax.swing.JButton();
+        lblMessage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login Page");
         setAlwaysOnTop(true);
-        setBackground(new java.awt.Color(204, 0, 51));
 
         lblWelcomeLabel.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
         lblWelcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -61,13 +61,19 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        btnLogin.setBackground(new java.awt.Color(0, 102, 255));
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
         btnLogin.setText("Login");
+        btnLogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnLogin.setBorderPainted(false);
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoginActionPerformed(evt);
             }
         });
 
+        btnRent.setBackground(new java.awt.Color(255, 0, 0));
+        btnRent.setForeground(new java.awt.Color(255, 255, 255));
         btnRent.setText("Rent Equipment");
         btnRent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,12 +81,17 @@ public class login extends javax.swing.JFrame {
             }
         });
 
+        btnPurchase.setBackground(new java.awt.Color(255, 0, 51));
+        btnPurchase.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnPurchase.setForeground(new java.awt.Color(255, 255, 255));
         btnPurchase.setText("Purchase Equipment");
         btnPurchase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPurchaseActionPerformed(evt);
             }
         });
+
+        lblMessage.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,8 +107,8 @@ public class login extends javax.swing.JFrame {
                         .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblWelcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -105,9 +116,11 @@ public class login extends javax.swing.JFrame {
                                     .addGap(32, 32, 32)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(32, 32, 32)))
-                            .addComponent(lblWelcomeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(138, 138, 138)
+                                .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -124,12 +137,14 @@ public class login extends javax.swing.JFrame {
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnLogin)
-                .addGap(62, 62, 62)
+                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPurchase, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRent, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("Welcome to Sports Rental");
@@ -169,18 +184,18 @@ public class login extends javax.swing.JFrame {
                    String password = rentalDB.getPasswordByUsername(nUsername);
                    
                     if (password == null) {
-                    // Username not found in the database
-                    System.out.println("Username not found.");
+                    //Username not found in the database
+                   lblMessage.setText("Username not found.");
                 } else if (password.equals(nPassword)) {
-                    // Password matches
+                    //Password matches
                     System.out.println("Login successful.");
                     this.dispose();
                      WelcomePage wpage = new WelcomePage();
                      wpage.setVisible(true);
-                    // Proceed with your application logic here, such as opening a new window
+                    //Return to welcome page
                 } else {
-                    // Password does not match
-                    System.out.println("Incorrect password.");
+                    //Password does not match
+                    lblMessage.setText("Incorrect password.");
                 }
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -223,6 +238,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnPurchase;
     private javax.swing.JButton btnRent;
+    private javax.swing.JLabel lblMessage;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JLabel lblWelcomeLabel;

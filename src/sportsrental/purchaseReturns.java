@@ -35,6 +35,8 @@ public class purchaseReturns extends javax.swing.JFrame {
 
         lblPID.setText("Purchase ID:");
 
+        btnReturn.setBackground(new java.awt.Color(153, 0, 153));
+        btnReturn.setForeground(new java.awt.Color(255, 255, 255));
         btnReturn.setText("Return");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -42,6 +44,8 @@ public class purchaseReturns extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,21 +91,26 @@ public class purchaseReturns extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
-       String strPurchasedID =  txtPurchaseID.getText();
+         //Clear any previous message
+        lblMessage.setText("");
+        String strPurchasedID =  txtPurchaseID.getText();
        try{
+                //Check if the text field is empty
                 if (strPurchasedID.isEmpty())
                 {
                     lblMessage.setText("Please enter your Purchase ID");
                 }
                 else{
-
+                      //If the field is not empty, try to convert the text to an integer
                       int pid = Integer.parseInt(strPurchasedID);
                       sportsRentalDB rentalDB = new sportsRentalDB();
+                       //Call the removePurchaseItem method with the parsed purchase ID
                       rentalDB.removePurchaseItem(pid);
+                      //Display a success message
                       lblMessage.setText("Item Returned Succesfully");
                  }
              } catch (NumberFormatException e) {
-        // Handle NumberFormatException if parsing fails
+        //Handle NumberFormatException if parsing fails
         lblMessage.setText("Please enter valid numbers Purchase ID.");
              }
     }//GEN-LAST:event_btnReturnActionPerformed

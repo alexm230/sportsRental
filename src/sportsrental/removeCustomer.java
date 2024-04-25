@@ -36,6 +36,8 @@ public class removeCustomer extends javax.swing.JFrame {
 
         lblCustomerID.setText("Customer ID");
 
+        btnRemoveCustomer.setBackground(new java.awt.Color(153, 0, 153));
+        btnRemoveCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveCustomer.setText("Remove Cutomer");
         btnRemoveCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,7 +45,9 @@ public class removeCustomer extends javax.swing.JFrame {
             }
         });
 
-        btnWelcomePage.setText("Welcome Page");
+        btnWelcomePage.setBackground(new java.awt.Color(0, 0, 0));
+        btnWelcomePage.setForeground(new java.awt.Color(255, 255, 255));
+        btnWelcomePage.setText("Back");
         btnWelcomePage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnWelcomePageActionPerformed(evt);
@@ -91,7 +95,7 @@ public class removeCustomer extends javax.swing.JFrame {
 
             //Check if the customerIDText is empty
             if (customerIDText.isEmpty()) {
-                // Display an error message in lblMessage
+                //Display an error message in lblMessage
                 lblMessage.setText("Please enter a Customer ID.");
             } else {
                 try {
@@ -102,17 +106,17 @@ public class removeCustomer extends javax.swing.JFrame {
                     sportsRentalDB dbHelper = new sportsRentalDB();
                     dbHelper.removeCustomer(customerID);
 
-                    // Display success message in lblMessage
+                    //Display success message in lblMessage
                     lblMessage.setText("Customer removed successfully.");
                 } catch (NumberFormatException e) {
-                    // Display an error message in lblMessage if customerIDText is not a valid number
+                    //Display an error message in lblMessage if customerIDText is not a valid number
                     lblMessage.setText("Please enter a valid Customer ID.");
                 }
             }
     }//GEN-LAST:event_btnRemoveCustomerActionPerformed
 
     private void btnWelcomePageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWelcomePageActionPerformed
-             this.dispose();
+            this.dispose();
             customerInfo infoCus = new customerInfo();
             infoCus.setVisible(true);
     }//GEN-LAST:event_btnWelcomePageActionPerformed

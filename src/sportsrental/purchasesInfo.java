@@ -31,7 +31,6 @@ public class purchasesInfo extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         popupMenu1 = new java.awt.PopupMenu();
         lblCustomerID = new javax.swing.JLabel();
@@ -70,6 +69,8 @@ public class purchasesInfo extends javax.swing.JFrame {
 
         lblPrice.setText("Price:");
 
+        btnCheckPriceandStock.setBackground(new java.awt.Color(0, 102, 204));
+        btnCheckPriceandStock.setForeground(new java.awt.Color(255, 255, 255));
         btnCheckPriceandStock.setText("Check Price and Stock");
         btnCheckPriceandStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,8 +78,13 @@ public class purchasesInfo extends javax.swing.JFrame {
             }
         });
 
+        lblMessage.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lblMessage.setForeground(new java.awt.Color(255, 0, 0));
+
         lblFullPrice.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +92,8 @@ public class purchasesInfo extends javax.swing.JFrame {
             }
         });
 
+        btnBuy.setBackground(new java.awt.Color(51, 153, 0));
+        btnBuy.setForeground(new java.awt.Color(255, 255, 255));
         btnBuy.setText("Buy");
         btnBuy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +105,8 @@ public class purchasesInfo extends javax.swing.JFrame {
 
         lblProductStatus.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
 
+        btnReturns.setBackground(new java.awt.Color(153, 0, 153));
+        btnReturns.setForeground(new java.awt.Color(255, 255, 255));
         btnReturns.setText("Return Purchses");
         btnReturns.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,36 +119,40 @@ public class purchasesInfo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(82, 82, 82)
-                        .addComponent(btnReturns))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnReturns)
+                                .addGap(104, 104, 104))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblCustomerID)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(90, 90, 90)
+                                        .addComponent(lblStockID))
+                                    .addComponent(btnCheckPriceandStock))
+                                .addGap(36, 36, 36)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBuy)
+                                    .addComponent(txtstockID, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCustomerID)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(90, 90, 90)
-                                .addComponent(lblStockID))
-                            .addComponent(btnCheckPriceandStock))
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBuy)
-                            .addComponent(txtstockID, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFullPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblProductStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(4, 4, 4)))
-                    .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblFullPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblProductStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -146,24 +160,23 @@ public class purchasesInfo extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCustomerID)
-                            .addComponent(txtstockID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblStockID))
-                        .addGap(29, 29, 29)
-                        .addComponent(btnCheckPriceandStock)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblProductStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblPrice, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblFullPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtCustomerID, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCustomerID)
+                    .addComponent(txtstockID, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStockID))
+                .addGap(29, 29, 29)
+                .addComponent(btnCheckPriceandStock, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblProductStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPrice)
+                    .addComponent(lblFullPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
                     .addComponent(btnBuy)
@@ -179,9 +192,13 @@ public class purchasesInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_txtstockIDActionPerformed
 
     private void btnBuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyActionPerformed
-       if(available){
+        //if global boolean variable is true
+        if(available){
+           int id = 0;
            rentalDB = new sportsRentalDB();
-           rentalDB.addPurchase(customerID, stockID, priceOfItem);  
+           //Add purchase to the database and get the purchase ID
+           id = rentalDB.addPurchase(customerID, stockID, priceOfItem); 
+           lblMessage.setText("Your Purchased ID is: " + id + ", You have 30 Days to Return");
        }
        else{
            lblMessage.setText("Unavailable, Please Check price & stock button first");
@@ -198,31 +215,37 @@ public class purchasesInfo extends javax.swing.JFrame {
         String customerIDText = txtCustomerID.getText().trim();
         String stockIDText = txtstockID.getText().trim();
          
-         // Check if any of the fields are empty
+         //Check if any of the fields are empty
         if (customerIDText.isEmpty() || stockIDText.isEmpty() ) {
             lblMessage.setText("Please fill in all fields.");
             return;
         }
         try {
-                    // Convert the values to integers
+                    //Convert the values to integers
                     customerID = Integer.parseInt(customerIDText);
                     stockID = Integer.parseInt(stockIDText);
                     
                      rentalDB = new sportsRentalDB();
+                     
+                     //Get the first name of the customer associated with the customer ID
                      String firstName = rentalDB.getCustomerFirstName(customerID);
+                     //Check if the stock is available
                      stockAvailability = rentalDB.checkStockExists(stockID);
                      if(firstName==null)
                      {
                          lblMessage.setText("Invalid customer ID.");
                      }
+                     //If stock is available
                      if(stockAvailability){
                           if (firstName == null) {
+                             //If customer ID is invalid, display an error message and update availability status
                             lblMessage.setText("Invalid customer ID.");
                             lblProductStatus.setText("Unavailable");
                             lblFullPrice.setText("");
                             available = false;
                         } else {
-                            lblMessage.setText("Hi " + firstName);
+                            
+                            lblMessage.setText("Welcome Back " + firstName+"!");
                             lblProductStatus.setText("Available");
                             available = true;
                             priceOfItem = rentalDB.getEquipmentPrice(stockID);

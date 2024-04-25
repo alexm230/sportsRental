@@ -22,31 +22,34 @@ public class viewPurchases extends javax.swing.JFrame {
         displayPurchases();
     }
     private void displayPurchases() {
-        // Get all purchases from the database
+        //Get all purchases from the database
         Map<Integer, Map<String, Object>> purchases = db.getAllPurchases();
 
-        // Create a table model to hold the purchase data
-        DefaultTableModel model = new DefaultTableModel();
+        //Create a table model to hold the purchase data
+        DefaultTableModel purchaseTable = new DefaultTableModel();
 
-        // Set the column names
-        model.addColumn("purchaseID");
-        model.addColumn("customerID");
-        model.addColumn("stockID");
-        model.addColumn("PurchaseDate");
-        model.addColumn("TotalPrice");
+        //Set the column names
+        purchaseTable.addColumn("purchaseID");
+        purchaseTable.addColumn("customerID");
+        purchaseTable.addColumn("stockID");
+        purchaseTable.addColumn("PurchaseDate");
+        purchaseTable.addColumn("TotalPrice");
         
-        // Iterate through the purchases and add them to the table model
+        //Iterate through the purchases and add them to the table model
         for (Map.Entry<Integer, Map<String, Object>> entry : purchases.entrySet()) {
-            Object[] rowData = new Object[5];
-            rowData[0] = entry.getKey();
+            Object[] rowInfo = new Object[5];
+            //Get and assign values to the rowData array
+            rowInfo[0] = entry.getKey();
             Map<String, Object> purchaseInfo = entry.getValue();
-            rowData[1] = purchaseInfo.get("customerID");
-            rowData[2] = purchaseInfo.get("stockID");
-            rowData[3] = purchaseInfo.get("PurchaseDate");
-            rowData[4] = purchaseInfo.get("TotalPrice");
-            model.addRow(rowData);
+            rowInfo[1] = purchaseInfo.get("customerID");
+            rowInfo[2] = purchaseInfo.get("stockID");
+            rowInfo[3] = purchaseInfo.get("PurchaseDate");
+            rowInfo[4] = purchaseInfo.get("TotalPrice");
+            //Add the rowData array as a row in the table model
+            purchaseTable.addRow(rowInfo);
         }
-        purchasesTable.setModel(model);
+        //Make the created table model as the model for the purchasesTable
+        purchasesTable.setModel(purchaseTable);
     }
     
 
@@ -65,6 +68,8 @@ public class viewPurchases extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        purchasesTable.setBackground(new java.awt.Color(153, 153, 153));
+        purchasesTable.setForeground(new java.awt.Color(0, 0, 0));
         purchasesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -78,6 +83,8 @@ public class viewPurchases extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(purchasesTable);
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,16 +99,16 @@ public class viewPurchases extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(361, 361, 361))
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(359, 359, 359))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addGap(28, 28, 28))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         pack();

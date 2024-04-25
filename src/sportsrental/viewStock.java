@@ -22,22 +22,23 @@ public class viewStock extends javax.swing.JFrame {
         sportsRentalDB dbHelper = new sportsRentalDB();
         Map<Integer, Map<String, Object>> stockDictionary = dbHelper.getAllStock();
 
-        // Get the table model
-        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel) tblStock.getModel();
+        //Get the table model
+        javax.swing.table.DefaultTableModel stockTableM = (javax.swing.table.DefaultTableModel) tblStock.getModel();
 
-        // Clear existing rows
-        model.setRowCount(0);
+        //Clear existing rows
+        stockTableM.setRowCount(0);
 
-        // Iterate through the stock dictionary and add rows to the table
+        //Iterate through the stock dictionary and add rows to the table
         for (Map.Entry<Integer, Map<String, Object>> entry : stockDictionary.entrySet()) {
             Map<String, Object> stockInfo = entry.getValue();
-            model.addRow(new Object[]{
+            stockTableM.addRow(new Object[]{
+                //Extract all info
                 entry.getKey(), // Stock ID
-                stockInfo.get("equipmentName"), // Equipment Name
-                stockInfo.get("equipmentAge"), // Equipment Age
-                stockInfo.get("equipmentQuality"), // Equipment Quality
-                stockInfo.get("equipmentPrice"), // Equipment Price
-                stockInfo.get("rentPricePerDay") // Rent Price per Day
+                stockInfo.get("equipmentName"), //Equipment Name
+                stockInfo.get("equipmentAge"), //Equipment Age
+                stockInfo.get("equipmentQuality"), //Equipment Quality
+                stockInfo.get("equipmentPrice"), //Equipment Price
+                stockInfo.get("rentPricePerDay") //Rent Price per Day
             });
         }
     }
@@ -59,6 +60,8 @@ public class viewStock extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        tblStock.setBackground(new java.awt.Color(153, 153, 153));
+        tblStock.setForeground(new java.awt.Color(0, 0, 0));
         tblStock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -72,6 +75,8 @@ public class viewStock extends javax.swing.JFrame {
         ));
         tblScrollStock.setViewportView(tblStock);
 
+        btnRemoveStock.setBackground(new java.awt.Color(102, 0, 102));
+        btnRemoveStock.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveStock.setText("Remove Stock");
         btnRemoveStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +84,8 @@ public class viewStock extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,11 +115,11 @@ public class viewStock extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tblScrollStock, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addComponent(tblScrollStock, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBack)
-                    .addComponent(btnRemoveStock))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(btnRemoveStock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(50, 50, 50))

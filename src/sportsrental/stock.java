@@ -61,6 +61,8 @@ public class stock extends javax.swing.JFrame {
 
         lblEquipmentAge.setText("Equipment Age:");
 
+        btnAddStock.setBackground(new java.awt.Color(0, 102, 102));
+        btnAddStock.setForeground(new java.awt.Color(255, 255, 255));
         btnAddStock.setText("Add Stock");
         btnAddStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +70,8 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        btnViewStock.setBackground(new java.awt.Color(153, 153, 0));
+        btnViewStock.setForeground(new java.awt.Color(255, 255, 255));
         btnViewStock.setText("View Stocks");
         btnViewStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,6 +79,8 @@ public class stock extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,25 +166,25 @@ public class stock extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEquipmentQuality, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(63, 63, 63)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblPriceperStock)
                     .addComponent(txtPriceperStock, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPriceOfRent)
                     .addComponent(txtRentPricePerDay, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(72, 72, 72)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(fFieldEquipmentAge, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAddStock, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblEquipmentAge))
-                .addGap(34, 34, 34)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnViewStock, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblErrorMsg)
-                .addGap(76, 76, 76))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -214,10 +220,12 @@ public class stock extends javax.swing.JFrame {
                     sportsRentalDB dbHelper = new sportsRentalDB();
                     dbHelper.addEquipment(equipmentName, equipmentAge, equipmentQuality, equipmentPrice, rentPricePerDay);
 
-                    // Clear error message
+                    //Clear error message
                     lblErrorMsg.setText("");
+                    //invalid price format error catch
                 } catch (NumberFormatException ex) {
                     lblErrorMsg.setText("Invalid price format.");
+                    //invalid date format error catch
                 } catch (DateTimeParseException ex) {
                     lblErrorMsg.setText("Invalid date format.");
             }

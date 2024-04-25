@@ -30,14 +30,16 @@ public class viewEmployees extends javax.swing.JFrame {
         // Fetch employee data from the database
         Map<Integer, Map<String, Object>> employeeData = dbHelper.getAllEmployees();
         
-        // Iterate through the employee data and add it to the table
+        //Iterate through the employee data and add it to the table
         for (Map.Entry<Integer, Map<String, Object>> entry : employeeData.entrySet()) {
+            //Get employee data from the map entry
             Integer employeeID = entry.getKey();
             Map<String, Object> data = entry.getValue();
             String fName = (String) data.get("fName");
             String lName = (String) data.get("lName");
             String address = (String) data.get("Address");
             
+            //Add a new row to the table with the employee info received
             model.addRow(new Object[]{employeeID, fName, lName, address});
         }
     }
@@ -59,6 +61,8 @@ public class viewEmployees extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTable1.setBackground(new java.awt.Color(153, 153, 153));
+        jTable1.setForeground(new java.awt.Color(0, 0, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -72,6 +76,8 @@ public class viewEmployees extends javax.swing.JFrame {
         ));
         tblEmployeeInfo.setViewportView(jTable1);
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +85,8 @@ public class viewEmployees extends javax.swing.JFrame {
             }
         });
 
+        btnRemoveEmployee.setBackground(new java.awt.Color(102, 0, 102));
+        btnRemoveEmployee.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveEmployee.setText("Remove Employee");
         btnRemoveEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

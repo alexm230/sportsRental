@@ -20,6 +20,7 @@ public class customerInfo extends javax.swing.JFrame {
         genderButtonGroup = new ButtonGroup();
         initComponents();
         
+        //Add radio buttons to the genderButtonGroup
         genderButtonGroup.add(radioFemale);
         genderButtonGroup.add(radioMale);
         genderButtonGroup.add(radioOther);
@@ -116,6 +117,8 @@ public class customerInfo extends javax.swing.JFrame {
             }
         });
 
+        btnSubmit.setBackground(new java.awt.Color(0, 102, 102));
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
         btnSubmit.setText("Add Customer");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +126,8 @@ public class customerInfo extends javax.swing.JFrame {
             }
         });
 
+        btnViewCustomers.setBackground(new java.awt.Color(153, 153, 0));
+        btnViewCustomers.setForeground(new java.awt.Color(255, 255, 255));
         btnViewCustomers.setText("View Customer");
         btnViewCustomers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +135,8 @@ public class customerInfo extends javax.swing.JFrame {
             }
         });
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +144,8 @@ public class customerInfo extends javax.swing.JFrame {
             }
         });
 
+        btnRemoveCustomer.setBackground(new java.awt.Color(102, 0, 102));
+        btnRemoveCustomer.setForeground(new java.awt.Color(255, 255, 255));
         btnRemoveCustomer.setText("Remove Customer");
         btnRemoveCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -208,16 +217,18 @@ public class customerInfo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAddress))
-                .addGap(45, 45, 45)
+                .addGap(34, 34, 34)
                 .addComponent(radioFemale)
-                .addGap(1, 1, 1)
-                .addComponent(radioMale)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(radioMale)
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(radioOther)
-                        .addComponent(lblSex)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(radioOther)
+                            .addComponent(lblSex))
+                        .addGap(7, 7, 7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSubmit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
@@ -242,20 +253,21 @@ public class customerInfo extends javax.swing.JFrame {
     }//GEN-LAST:event_radioOtherActionPerformed
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
-            // Get the input from text fields
+            //Get the input from text fields
           String firstName = txtFname.getText();
           String lastName = txtLName.getText();
           int age;
           try {
+              //Convert to int
               age = Integer.parseInt(textAge.getText());
           } catch (NumberFormatException e) {
-              // Handle invalid age input
+              //Handle invalid age input
               lblMessage.setText("Please enter a valid age.");
               return;
           }
           String address = txtAddress.getText();
 
-        // Get the selected gender
+        //Get the selected gender and assign gender variable
         String gender = "";
         if (radioFemale.isSelected()) {
             gender = "Female";
@@ -265,18 +277,16 @@ public class customerInfo extends javax.swing.JFrame {
             gender = "Other";
         }
 
-        // Validate the input
+        //If any input is empty
         if (firstName.isEmpty() || lastName.isEmpty() || age <= 0 || address.isEmpty() || gender.isEmpty()) {
-            // Display an error message if any field is empty
+            //Display an error message if any field is empty
              lblMessage.setText("Please fill out all fields.");
         } else {
+            //Connecting to the database
              sportsRentalDB dbHelper = new sportsRentalDB();
+             //add customer to the database
              dbHelper.addCustomer(firstName, lastName, age, gender, address);
 
-            // Optionally, disable the radio buttons after submission
-            radioFemale.setEnabled(false);
-            radioMale.setEnabled(false);
-            radioOther.setEnabled(false);
         }
     }//GEN-LAST:event_btnSubmitActionPerformed
 

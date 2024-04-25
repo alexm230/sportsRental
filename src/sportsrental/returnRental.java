@@ -34,6 +34,8 @@ public class returnRental extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        btnReturn.setBackground(new java.awt.Color(153, 0, 153));
+        btnReturn.setForeground(new java.awt.Color(255, 255, 255));
         btnReturn.setText("Return");
         btnReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -43,6 +45,8 @@ public class returnRental extends javax.swing.JFrame {
 
         lblReturnID.setText("Return ID:");
 
+        btnBack.setBackground(new java.awt.Color(0, 0, 0));
+        btnBack.setForeground(new java.awt.Color(255, 255, 255));
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +74,7 @@ public class returnRental extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap(30, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblReturnID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtReturnID, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -79,14 +83,14 @@ public class returnRental extends javax.swing.JFrame {
                     .addComponent(btnReturn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(143, Short.MAX_VALUE))
+                .addComponent(lblMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReturnActionPerformed
+        //Get the return ID from the text field
         String strReturnID =  txtReturnID.getText();
         try{
             if (strReturnID.isEmpty())
@@ -94,14 +98,14 @@ public class returnRental extends javax.swing.JFrame {
                 lblMessage.setText("Please enter your Return ID");
             }
             else{
-
+                //Convert to int
                 int rid = Integer.parseInt(strReturnID);
                 sportsRentalDB rentalDB = new sportsRentalDB();
                 rentalDB.updateReturnDateAndStatus(rid);
                 lblMessage.setText("Item Returned Succesfully");
             }
         } catch (NumberFormatException e) {
-            // Handle NumberFormatException if parsing fails
+            //NumberFormatException if parsing fails
             lblMessage.setText("Please enter valid numbers Return ID.");
         }
     }//GEN-LAST:event_btnReturnActionPerformed
